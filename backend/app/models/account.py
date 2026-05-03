@@ -16,7 +16,7 @@ class Account(Base):
     __tablename__ = "accounts"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
-    rib: Mapped[str] = mapped_column(String(20), unique=True)
+    rib: Mapped[str] = mapped_column(String(25), unique=True)
     account_type: Mapped[AccountType] = mapped_column(Enum(AccountType), default=AccountType.CCP)
     balance_da: Mapped[Decimal] = mapped_column(Numeric(15, 2), default=0)
     currency: Mapped[str] = mapped_column(String(3), default="DZD")
