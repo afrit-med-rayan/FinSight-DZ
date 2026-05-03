@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+node_modules/
+dist/
+build/
+.DS_Store
+
+# Exclude Agent Plan from Git
+finsight-dz-agent-plan.md
