@@ -6,6 +6,9 @@ from sqlalchemy.orm import Session
 from app.models.transaction import Transaction, TransactionType, TransactionStatus
 from app.models.prediction import Prediction
 from app.models.account import Account
+import logging
+
+logger = logging.getLogger(__name__)
 
 def train_and_predict(account_id: int, db: Session):
     """
@@ -98,4 +101,4 @@ def retrain_all(db: Session):
         try:
             train_and_predict(acc.id, db)
         except Exception as e:
-            print(f"Failed to train account {acc.id}: {e}")
+            logger.error(f"Failed to train account {acc.id}: {e}")

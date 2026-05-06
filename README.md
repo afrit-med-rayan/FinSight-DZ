@@ -67,9 +67,29 @@ FinSight DZ is a full-stack web application that simulates an Algerian digital b
 - **Database:** PostgreSQL on `localhost:5432`
 
 ## Project Architecture
+
+```mermaid
+graph TD
+    User((Utilisateur))
+    Vite[React Frontend - Vite]
+    FastAPI[FastAPI Backend]
+    DB[(PostgreSQL)]
+    ML[ML Predictor - Scikit-learn]
+    Scheduler[APScheduler - Jobs]
+    
+    User <--> Vite
+    Vite <--> FastAPI
+    FastAPI <--> DB
+    FastAPI <--> ML
+    Scheduler <--> FastAPI
+    Scheduler <--> DB
+```
+
 - **Auth:** JWT Bearer token authentication.
-- **Background Tasks:** APScheduler runs daily to generate insights, settle pending transfers, and retrain the ML models weekly.
+- **Insights Engine:** Business rule aggregation (9 rules) for real-time financial advice.
+- **Background Tasks:** APScheduler runs daily to generate insights, settle pending transfers (T+2), and retrain ML models weekly.
 - **Database Management:** Alembic handles database schema migrations.
+- **ML Forecast:** Linear regression for 6-month balance and expense projections.
 
 ## Disclaimer
 This project is a simulation and portfolio piece. It does not integrate with real bank APIs, payment gateways, or process real financial transactions.
