@@ -5,8 +5,7 @@ import DashboardPage from './pages/DashboardPage';
 import TransactionsPage from './pages/TransactionsPage';
 import InsightsPage from './pages/InsightsPage';
 import BudgetsPage from './pages/BudgetsPage';
-import Layout from './components/Layout';
-import useAuthStore from './store/authStore';
+import PredictionsPage from './pages/PredictionsPage';
 
 function ProtectedRoute({ children }) {
   const token = useAuthStore((state) => state.token);
@@ -32,6 +31,7 @@ function App() {
           <Route path="transactions"     element={<TransactionsPage />} />
           <Route path="insights"         element={<InsightsPage />} />
           <Route path="budgets"          element={<BudgetsPage />} />
+          <Route path="predictions"      element={<PredictionsPage />} />
           <Route path="*"                element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

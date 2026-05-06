@@ -9,6 +9,7 @@ import {
   TrendingUp,
   PiggyBank,
   Bell,
+  Brain,
 } from 'lucide-react';
 
 const Layout = () => {
@@ -51,6 +52,7 @@ const Layout = () => {
     { name: 'Transactions',  path: '/transactions', icon: List },
     { name: 'Insights',      path: '/insights',     icon: TrendingUp, badge: unreadCount },
     { name: 'Budgets',       path: '/budgets',      icon: PiggyBank },
+    { name: 'Prévisions IA', path: '/predictions',  icon: Brain },
   ];
 
   return (

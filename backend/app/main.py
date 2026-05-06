@@ -25,6 +25,15 @@ app.include_router(insights.router,     prefix="/api/v1/insights",      tags=["i
 app.include_router(predictions.router,  prefix="/api/v1/predictions",   tags=["predictions"])
 app.include_router(budgets.router,      prefix="/api/v1/budgets",       tags=["budgets"])
 app.include_router(categories.router,   prefix="/api/v1/categories",    tags=["categories"])
+from app.services.scheduler import start, shutdown
+
+@app.on_event("startup")
+async def startup_event():
+    start()
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    shutdown()
 
 @app.get("/health")
 def health(): return {"status": "ok", "app": "FinSight DZ"}
