@@ -12,6 +12,7 @@ from app.models.user import User
 from app.models.account import Account, AccountType
 from app.schemas.auth import UserCreate, UserResponse, Token
 from app.seed.seed_transactions import generate_demo_data
+from app.services.insight_engine import generate_insights
 import random
 
 router = APIRouter()
@@ -80,6 +81,12 @@ def register(user_in: UserCreate, db: Session = Depends(get_db)):
     db.refresh(ccp_account)
 
     generate_demo_data(ccp_account.id, user.salary_day, db)
+
+    # Run initial insight generation so the new user has insights from day 1
+    try:
+        generate_insights(ccp_account.id, db)
+    except Exception:
+        pass  # Never block registration if insight generation fails
 
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
