@@ -6,11 +6,13 @@ const useAuthStore = create(
     (set) => ({
       token: null,
       user: null,
+      selectedAccountId: null,           // persisted selected account
       setAuth: (token, user) => set({ token, user }),
-      logout: () => set({ token: null, user: null }),
+      setSelectedAccount: (id) => set({ selectedAccountId: id }),
+      logout: () => set({ token: null, user: null, selectedAccountId: null }),
     }),
     {
-      name: 'auth-storage', // name of item in the storage (must be unique)
+      name: 'auth-storage',
     }
   )
 );

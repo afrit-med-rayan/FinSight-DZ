@@ -3,6 +3,8 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
 import TransactionsPage from './pages/TransactionsPage';
+import InsightsPage from './pages/InsightsPage';
+import BudgetsPage from './pages/BudgetsPage';
 import Layout from './components/Layout';
 import useAuthStore from './store/authStore';
 
@@ -16,7 +18,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login"    element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route
           path="/"
@@ -26,9 +28,11 @@ function App() {
             </ProtectedRoute>
           }
         >
-          <Route index element={<DashboardPage />} />
-          <Route path="transactions" element={<TransactionsPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route index                   element={<DashboardPage />} />
+          <Route path="transactions"     element={<TransactionsPage />} />
+          <Route path="insights"         element={<InsightsPage />} />
+          <Route path="budgets"          element={<BudgetsPage />} />
+          <Route path="*"                element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
     </Router>
