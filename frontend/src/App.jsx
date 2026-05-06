@@ -6,6 +6,8 @@ import TransactionsPage from './pages/TransactionsPage';
 import InsightsPage from './pages/InsightsPage';
 import BudgetsPage from './pages/BudgetsPage';
 import PredictionsPage from './pages/PredictionsPage';
+import Layout from './components/Layout';
+import useAuthStore from './store/authStore';
 
 function ProtectedRoute({ children }) {
   const token = useAuthStore((state) => state.token);
