@@ -7,9 +7,9 @@ from typing import List
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 
+from app.models.account import Account
 from app.models.insight import Insight, InsightSeverity
 from app.models.transaction import Transaction, TransactionType, TransactionStatus
-from app.models.category import Category
 
 # ---------------------------------------------------------------------------
 # Cost-of-living benchmarks for Alger (DA)
@@ -218,7 +218,6 @@ def generate_insights(account_id: int, db: Session) -> List[Insight]:
             )
 
     # --- R-04: Low balance alert ---
-    from app.models.account import Account
     account = db.query(Account).filter(Account.id == account_id).first()
     if account and float(account.balance_da) < 5000:
         cutoff_48h = now - timedelta(hours=48)
